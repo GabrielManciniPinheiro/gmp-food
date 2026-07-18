@@ -16,6 +16,7 @@ declare const globalThis: {
   prismaGlobal: ReturnType<typeof prismaClientSingleton>;
 } & typeof global;
 
-export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
+// MUDANÇA AQUI: Exportamos a constante com o nome 'db' para ficar igual ao do professor
+export const db = globalThis.prismaGlobal ?? prismaClientSingleton();
 
-if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = prisma;
+if (process.env.NODE_ENV !== "production") globalThis.prismaGlobal = db;
