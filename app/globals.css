@@ -41,14 +41,14 @@
   --primary-foreground: 0 0% 100%;
   --secondary: 356 30% 90%;
   --secondary-foreground: 0 0% 0%;
-  --muted: 318 30% 95%;
-  --muted-foreground: 225 8% 53%;
   --accent: 318 30% 90%;
   --accent-foreground: 356 5% 15%;
   --destructive: 0 100% 50%;
   --destructive-foreground: 356 5% 100%;
-  --border: 356 30% 82%;
-  --input: 356 30% 50%;
+  --muted: 0 0% 92%;
+  --muted-foreground: 0 0% 45.1%;
+  --border: 0 0% 80%;
+  --input: 0 0% 80%;
   --ring: 356 83% 51.6%;
   --radius: 0.75rem;
 }
