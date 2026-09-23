@@ -35,7 +35,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
         name: "Sucos",
       },
       restaurant: {
-        id: product?.restaurant.id,
+        id: product.restaurant.id,
       },
     },
     include: {
@@ -54,7 +54,16 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 
       {/* TITULO E PRECO */}
       <ProductDetails
-        complementaryProducts={juices}
+        complementaryProducts={juices.map((juice) => ({
+          ...juice,
+          price: Number(juice.price) as unknown as Prisma.Decimal,
+          restaurant: {
+            ...juice.restaurant,
+            deliveryFee: Number(
+              juice.restaurant.deliveryFee,
+            ) as unknown as Prisma.Decimal,
+          },
+        }))}
         product={{
           ...product,
           price: Number(product.price) as unknown as Prisma.Decimal,
