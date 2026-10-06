@@ -1,5 +1,6 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
+import { Slot } from "@radix-ui/react-slot"; // 1. Importamos o Slot do Radix
 
 import { cn } from "@/app/_lib/utils";
 
@@ -40,14 +41,25 @@ const buttonVariants = cva(
   },
 );
 
+// 2. Criamos a tipagem do botão para avisar o TypeScript que o asChild existe
+export interface ButtonProps
+  extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+}
+
+// 3. Adicionamos o asChild nas propriedades
 function Button({
   className,
   variant = "default",
   size = "default",
+  asChild = false, // Valor padrão como false
   ...props
-}: ButtonPrimitive.Props & VariantProps<typeof buttonVariants>) {
+}: ButtonProps) {
+  // 4. Aqui está a mágica: se asChild for true, usa o Slot. Senão, usa o botão normal do Base UI.
+  const Comp = asChild ? Slot : ButtonPrimitive;
+
   return (
-    <ButtonPrimitive
+    <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
